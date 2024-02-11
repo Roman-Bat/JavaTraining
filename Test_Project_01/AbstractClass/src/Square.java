@@ -1,5 +1,5 @@
 /**
- * Класс Квадрат
+ * Класс создания фигуры Квадрата на основе абстрактного класса ColoredFigure
  */
 public class Square extends ColoredFigure {
 
