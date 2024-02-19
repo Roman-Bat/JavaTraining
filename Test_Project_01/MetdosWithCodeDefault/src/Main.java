@@ -1,56 +1,26 @@
-import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        // Создаём объектную переменную интерфейса Base
+        Base ref;
+        // Создаём объектную переменную класса Alpha
+        Alpha objA = new Alpha();
+        objA.hello(); // вызываем метод hello
+        objA.show(" объектная переменная ObjA");
 
-        System.out.println("Введите слово для шифрования на кириллице:");
-        String word = scanner.nextLine();
+        ref = objA;
+        ref.show(" интерфейсная переменная ref");
 
-        System.out.println("Введите смещение:");
-        int shift = scanner.nextInt();
+        // Создаём объектную переменную класса Bravo
+        Bravo objB = new Bravo();
+        objB.hello();
+        objB.show(" объектная переменная ObjB");
 
-        String encryptedWord = encrypt(word, shift);
-        System.out.println("Зашифрованное слово: " + encryptedWord);
-        String deencryptedWord = deencrypt(encryptedWord, shift);
-        System.out.println("Раcшифрованное слово: " + deencryptedWord);
-    }
+        ref = objB;
+        ref.show(" интерфейсная переменная ref");
+        // объект класса twoInterface
+        twoInterface objC = new twoInterface();
+        objC.hello();
 
-    public static String encrypt(String word, int shift) {
-        StringBuilder encryptedWord = new StringBuilder();
-
-        for (int i = 0; i < word.length(); i++) {
-            char currentChar = word.charAt(i);
-            // Проверяем, является ли символ кириллической буквой
-            if (Character.UnicodeBlock.of(currentChar) == Character.UnicodeBlock.CYRILLIC) {
-                // Вычисляем новый символ с учетом смещения
-                char newChar = (char) (((int) currentChar + shift - 'А') % ('а'-'А') + 'А');
-                encryptedWord.append(newChar);
-            } else {
-                // Если символ не кириллическая буква, просто добавляем его в зашифрованное слово без изменений
-                encryptedWord.append(currentChar);
-            }
-        }
-
-        return encryptedWord.toString();
-
-    }
-    public static String deencrypt (String word, int shift){
-        StringBuilder decryptedWord = new StringBuilder();
-
-        for (int i = 0; i < word.length(); i++) {
-            char currentChar = word.charAt(i);
-            // Проверяем, является ли символ кириллической буквой
-            if (Character.UnicodeBlock.of(currentChar) == Character.UnicodeBlock.CYRILLIC) {
-                // Вычисляем новый символ с учетом смещения
-                char newChar = (char) (((int) currentChar - shift - 1040 + 32) % 32 + 1040);
-                decryptedWord.append(newChar);
-            } else {
-                // Если символ не кириллическая буква, просто добавляем его в расшифрованное слово без изменений
-                decryptedWord.append(currentChar);
-            }
-        }
-
-        return decryptedWord.toString();
     }
 }

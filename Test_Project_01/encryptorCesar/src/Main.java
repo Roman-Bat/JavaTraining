@@ -12,6 +12,7 @@ public class Main {
 
         String encryptedWord = encrypt(word, shift);
         System.out.println("Зашифрованное слово: " + encryptedWord);
+
         String deencryptedWord = deencrypt(encryptedWord, shift);
         System.out.println("Раcшифрованное слово: " + deencryptedWord);
     }
